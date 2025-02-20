@@ -4,12 +4,16 @@ import axios from "axios";
 import DashBoard from "@/components/dashBoard";
 import { baseURL } from "../constants/constants.js";
 import Loader from "@/components/Loader";
-
+import { useRouter } from "next/navigation";
 export default function Home() {
+  const router = useRouter();
   const [user, setUser] = React.useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    if (!token) {
+      router.replace("/auth");
+    }
     const fetchUser = async () => {
       try {
         const response = await axios.get(`${baseURL}/user/getUser`, {
@@ -22,6 +26,7 @@ export default function Home() {
           console.log("User is authenticated");
         }
       } catch (error) {
+        router.replace("/auth");
         console.log("error", error);
       }
     };

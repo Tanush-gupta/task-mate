@@ -17,7 +17,6 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, setTrigger }) => {
       const response = await axios.delete(
         `${baseURL}/task/${task._id}/delete`,
         {
-          // withCredentials: true,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -38,7 +37,6 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, setTrigger }) => {
           status: newStatus,
         },
         {
-          // withCredentials: true,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

@@ -46,8 +46,8 @@ const NewTask: React.FC<NewTaskProps> = ({ setShowNewTask }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
-      <div className="bg-white rounded-lg p-6 w-1/3 flex flex-col gap-4 shadow-md relative">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10 ">
+      <div className="bg-white rounded-lg p-6 w-1/3 flex flex-col gap-4 shadow-md relative min-w-80">
         {/* Close Button */}
         <button
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800 "
