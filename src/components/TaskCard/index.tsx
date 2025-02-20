@@ -30,9 +30,9 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, setTrigger }) => {
     }
   };
 
-  const handleStatusChange = (newStatus: string) => {
+  const handleStatusChange = async (newStatus: string) => {
     try {
-      const response = axios.patch(
+      const response = await axios.patch(
         `${baseURL}/task/${task._id}/updateStatus`,
         {
           status: newStatus,
