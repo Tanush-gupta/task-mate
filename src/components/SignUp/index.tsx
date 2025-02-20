@@ -3,7 +3,7 @@ import { EyeOff } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { baseURL } from "../../constants/constants";
-
+import { toast } from "sonner";
 interface SignUpProps {
   setLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -23,11 +23,11 @@ const SignUp: React.FC<SignUpProps> = ({ setLogin }) => {
         password,
       });
       localStorage.setItem("token", response.data.token);
-      alert("Sign Up Successful");
+      toast.success("Sign Up Successful");
       router.replace("/");
     } catch (error: any) {
       console.log(error);
-      alert(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 

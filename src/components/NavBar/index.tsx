@@ -3,6 +3,7 @@ import { LogOut, Notebook } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { baseURL } from "@/constants/constants";
+import { toast } from "sonner";
 interface SideBarProps {
   user: { username: string };
 }
@@ -14,10 +15,11 @@ const SideBar: React.FC<SideBarProps> = ({ user }) => {
     try {
       await axios.get(`${baseURL}/user/logout`);
       localStorage.removeItem("token");
-      alert("Logged out");
+      toast.success("Logged out");
       router.replace("/auth");
     } catch (error) {
       console.log("Error logging out", error);
+      toast.error("Error logging out");
     }
   };
 

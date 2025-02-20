@@ -18,7 +18,6 @@ const TasksContainer: React.FC = () => {
   const [tab, setTab] = React.useState(0);
   const [showNewTask, setShowNewTask] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
-
   const [triggerApiCall, setTriggerApiCall] = useState(false);
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import axios from "axios";
 import { baseURL } from "@/constants/constants";
+import { toast } from "sonner";
 interface NewTaskProps {
   setShowNewTask: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -24,8 +25,11 @@ const NewTask: React.FC<NewTaskProps> = ({ setShowNewTask }) => {
   const handleSubmit = async () => {
     try {
       const token = localStorage.getItem("token");
-      if (!token) {
-        console.warn("No token found");
+
+      const currentDate = new Date();
+
+      if (new Date(task.dueDate) < currentDate) {
+        toast.error("Due date should be greater than today's date");
         return;
       }
 
@@ -38,9 +42,9 @@ const NewTask: React.FC<NewTaskProps> = ({ setShowNewTask }) => {
       if (response.data) {
         setShowNewTask(false);
       }
-      alert("Task Created");
+      toast.success("Task Created Successfully");
     } catch (error: any) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message);
       console.log("error", error);
     }
   };

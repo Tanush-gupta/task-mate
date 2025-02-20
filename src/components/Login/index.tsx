@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { EyeOff } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
+import { toast } from "sonner";
 import { baseURL } from "@/constants/constants";
 
 interface LoginProps {
@@ -23,10 +23,11 @@ const Login: React.FC<LoginProps> = ({ setLogin }) => {
         password,
       });
       localStorage.setItem("token", response.data.token);
-      alert("Login Successful");
+      toast.success("Login Successful");
       router.replace("/");
     } catch (error: any) {
-      alert(error.response.data.message);
+      // alert(error.response.data.message);
+      toast.error(error.response.data.message);
       console.log(error);
     }
   };
