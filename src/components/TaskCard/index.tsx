@@ -11,7 +11,8 @@ interface TaskCardProps {
 
 const TaskCard: React.FC<TaskCardProps> = ({ task, setTrigger }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const isDue: boolean = new Date(task.dueDate) < new Date();
+  const isDue: boolean =
+    new Date(task.dueDate) < new Date() && task.status !== "COMPLETED";
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
